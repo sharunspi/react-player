@@ -103,7 +103,10 @@ export default class Player extends Component {
     if (!this.isReady) return null
     return this.player.getCurrentTime()
   }
-
+  getCurrentFrame () {
+    if (!this.isReady) return null
+    return this.player.getCurrentFrame()
+  }
   getSecondsLoaded () {
     if (!this.isReady) return null
     return this.player.getSecondsLoaded()
@@ -117,8 +120,10 @@ export default class Player extends Component {
   progress = () => {
     if (this.props.url && this.player && this.isReady) {
       const playedSeconds = this.getCurrentTime() || 0
-      const loadedSeconds = this.getSecondsLoaded()
       const duration = this.getDuration()
+      const currentFrame = this.getCurrentFrame(playedSeconds / duration) || []
+      const loadedSeconds = this.getSecondsLoaded()
+     
       if (duration) {
         const progress = {
           playedSeconds,

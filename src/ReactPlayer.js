@@ -86,6 +86,11 @@ export const createReactPlayer = (players, fallback) => {
       return this.player.getCurrentTime()
     }
 
+    getCurrentFrame = () => {
+      if (!this.player) return null
+      return this.player.getCurrentFrame()
+    }
+
     getSecondsLoaded = () => {
       if (!this.player) return null
       return this.player.getSecondsLoaded()
